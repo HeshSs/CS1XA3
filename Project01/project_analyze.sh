@@ -4,19 +4,18 @@ if [ "$1" != "feature" ] || [ "$2" -lt 1 ] 2> /dev/null || [ "$2" -gt 10 ] 2> /d
     echo "Usage:"
     echo "  ./CS1XA3/Project01/project_analyze feature feature#"
 elif [ "$2" == 1 ] ; then
-    echo "Yay, feature 1 works"
+    echo "Feature 1 was run successfully."
 elif [ "$2" == 2 ] ; then
     if [[ -e ~/private/CS1XA3/Project01/fixme.log ]] ; then
         echo -n > ~/private/CS1XA3/Project01/fixme.log
     fi
     grep -wRl "#FIXME" ~/private/CS1XA3 | while read -r file; do
-          echo "file = $file"
-          tail -1 "$file"
-          lastline=`tail -1 "$file"`
+          lastline=`tail -1 "$file"` 2> /dev/null
           if [[ "$lastline" == *"#FIXME"*  ]] ; then
              echo "$file" >> ~/private/CS1XA3/Project01/fixme.log
           fi
     done
+    echo "Feature 2 was run successfully."
 elif [ "$2" == 3 ] ; then
     echo "Feature 3"
 elif [ "$2" == 4 ] ; then 

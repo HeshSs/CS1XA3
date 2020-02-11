@@ -6,7 +6,9 @@ if [ "$1" != "feature" ] || [ "$2" -lt 1 ] 2> /dev/null || [ "$2" -gt 10 ] 2> /d
 elif [ "$2" == 1 ] ; then
     echo "Yay, feature 1 works"
 elif [ "$2" == 2 ] ; then
-    #list=`grep -wRl "#FIXME" ~/private/CS1XA3`
+    if [[ -e ~/private/CS1XA3/Project01/fixme.log ]] ; then
+        echo -n > ~/private/CS1XA3/Project01/fixme.log
+    fi
     grep -wRl "#FIXME" ~/private/CS1XA3 | while read -r file; do
           echo "file = $file"
           tail -1 "$file"

@@ -18,6 +18,6 @@
 ## Feature 02
     Description: 
     Execution: ./CS1XA3/Project01/project_analyze.sh feature 2
-    Reference: some code was taken from [[url]]
+    Reference: some code was taken from [[https://www.cyberciti.biz/faq/unix-howto-read-line-by-line-from-file/]]
 ## Custom Feature SomeFeature
     ...

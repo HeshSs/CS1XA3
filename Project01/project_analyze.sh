@@ -23,6 +23,4 @@ elif [ "$2" == 9 ] ; then
     echo "Feature 9"
 elif [ "$2" == 10 ] ; then
     echo "Feature 10"
-else
-    echo "What?"
 fi

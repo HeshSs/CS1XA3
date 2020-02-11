@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ "$1" != "feature" ] || [ "$2" -lt 1 ] 2> /dev/null && [ "$2" -gt 10 ] 2> /dev/null ; then
+if [ "$1" != "feature" ] || [ "$2" -lt 1 ] 2> /dev/null || [ "$2" -gt 10 ] 2> /dev/null || [[ $2 != ?(-)+([0-9]) ]] ; then
     echo "Usage:"
     echo "  ./CS1XA3/Project01/project_analyze feature feature#"
 elif [ "$2" == 1 ] ; then

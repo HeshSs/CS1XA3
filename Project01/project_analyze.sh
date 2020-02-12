@@ -32,7 +32,8 @@ elif [ "$2" == 3 ] ; then
     fi
     echo "Feature 3 was run successfully."
 elif [ "$2" == 4 ] ; then 
-    echo "Feature 4"
+    ls ~/private/CS1XA3 -aRlh | grep '^-' | sort -k 5 -rh
+    echo "Feature 4 was run successfully."
 elif [ "$2" == 5 ] ; then
     echo "Feature 5"
 elif [ "$2" == 6 ] ; then

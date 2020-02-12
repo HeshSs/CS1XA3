@@ -17,7 +17,20 @@ elif [ "$2" == 2 ] ; then
     done
     echo "Feature 2 was run successfully."
 elif [ "$2" == 3 ] ; then
-    echo "Feature 3"
+    first=`git log --oneline --graph | grep -i "m" | head -1`
+    if [ "${first:0:1}" = "*" ] && [ "${first:2:1}" = "|" ] ; then
+        commit="${first:4:7}"
+    elif [ "${first:0:1}" = "|" ] && [ "${first:2:1}" = "*" ] ; then
+        commit="${first:4:7}"
+    elif [ "${first:0:1}" = "*" ] && [ "${first:2:1}" = " " ] ; then
+        commit="${first:4:7}"
+    elif [ "${first:0:1}" = "*" ] ; then
+        commit="${first:2:7}" 
+    fi
+    if [[ -n "$commit" ]] ; then 
+        git checkout "$commit"
+    fi
+    echo "Feature 3 was run successfully."
 elif [ "$2" == 4 ] ; then 
     echo "Feature 4"
 elif [ "$2" == 5 ] ; then

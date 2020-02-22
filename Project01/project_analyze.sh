@@ -47,13 +47,12 @@ elif [ "$1" == "feature" ] && [ "$2" == 4 ] ; then
 # Feature 5
 elif [ "$1" == "feature" ] && [ "$2" == 5 ] ; then
     read -p "Enter a file extention (i.e. sh, txt, py): " ext
-    grep -Rw --include=\*.$ext "" ~/private/CS1XA3/ | wc -l
+    grep -Rl --include=\*.${ext} "" ~/private/CS1XA3/ | wc -l
 
 # Feature 6
 elif [ "$1" == "feature" ] && [ "$2" == 6 ] ; then
     read -p "Enter a TAG (i.e Any single word): " tag
     if [[ -n $tag ]] ; then 
-        echo "--$tag--"
         if [[ -e ~/private/CS1XA3/Project01/${tag}.log ]] ; then
             echo -n > ~/private/CS1XA3/Project01/${tag}.log
         fi

@@ -55,6 +55,8 @@ elif [ "$1" == "feature" ] && [ "$2" == 6 ] ; then
     if [[ -n $tag ]] ; then 
         if [[ -e ~/private/CS1XA3/Project01/${tag}.log ]] ; then
             echo -n > ~/private/CS1XA3/Project01/${tag}.log
+        else
+            touch ~/private/CS1XA3/Project01/${tag}.log
         fi
         
         printed="false"
@@ -71,7 +73,12 @@ elif [ "$1" == "feature" ] && [ "$2" == 6 ] ; then
 
 # Feature 7
 elif [ "$1" == "feature" ] && [ "$2" == 7 ] ; then
-    echo "Feature 7"
+    files=`grep -Rl --include=\*.sh "" ~/private/CS1XA3/`
+    if [[ ! -e ~/private/CS1XA3/Project01/permissions.log ]] ; then
+        echo -n > ~/private/CS1XA3/Project01/permissions.log
+    fi
+    read -p "Type 'Change' if you wanna change permissions of the script files or 'Restore' if you want to restore their old permissions (without the quotes): " switch
+    echo "$switch"
 
 # Custom Feature 1
 elif [ "$1" == "custom_feature" ] && [ "$2" == 1 ] ; then

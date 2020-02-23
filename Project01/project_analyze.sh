@@ -70,6 +70,9 @@ elif [ "$1" == "feature" ] && [ "$2" == 6 ] ; then
             fi
         done
     fi
+    if [[ ! -s ~/private/CS1XA3/Project01/${tag}.log ]] ; then
+        rm ~/private/CS1XA3/Project01/${tag}.log
+    fi
 
 # Feature 7
 elif [ "$1" == "feature" ] && [ "$2" == 7 ] ; then

@@ -24,7 +24,7 @@ Execution:
    `./Project01/project_analyze.sh feature 2`
    
 Reference: some code was taken from 
-    [how to read line by line from file](https://www.cyberciti.biz/faq/unix-howto-read-line-by-line-from-file/)
+[how to read line by line from file](https://www.cyberciti.biz/faq/unix-howto-read-line-by-line-from-file/)
     
 Success Message:    "File fixme.log was successfully created in Project01 directory."
 
@@ -35,7 +35,7 @@ Execution:
     `./Project01/project_analyze.sh feature 3`
 
 Reference: some code was taken from 
-    [Bash cheat sheet](https://devhints.io/bash)
+[Bash cheat sheet](https://devhints.io/bash)
 
 Success Message:    A message by Git that says you are currently in detached head state.
 
@@ -46,7 +46,7 @@ Execution:
    `./Project01/project_analyze.sh feature 4`
 
 Reference: some code was taken from 
-    [how to list all files ordered by size](https://unix.stackexchange.com/questions/53737/how-to-list-all-files-ordered-by-size)
+[how to list all files ordered by size](https://unix.stackexchange.com/questions/53737/how-to-list-all-files-ordered-by-size)
 
 Success Message: The list of files and their size
 
@@ -57,7 +57,7 @@ Execution:
    `./Project01/project_analyze.sh feature 6`
 
 Reference: some code was taken from 
-    [Grep only certain file extensions](https://stackoverflow.com/questions/12516937/grep-but-only-certain-file-extensions)
+[Grep only certain file extensions](https://stackoverflow.com/questions/12516937/grep-but-only-certain-file-extensions)
 
 Success Message: A natural number, that represents the number of files in the repo with that file extension.
 
@@ -68,8 +68,10 @@ Execution:
    `./Project01/project_analyze.sh feature 6`
 
 Reference: some code was taken from 
-    [Grep Command in Linux](https://linuxize.com/post/how-to-use-grep-command-to-search-files-in-linux/)
-    [Bash cheat sheet](https://devhints.io/bash)
+
+[Grep Command in Linux](https://linuxize.com/post/how-to-use-grep-command-to-search-files-in-linux/)
+
+[Bash cheat sheet](https://devhints.io/bash)
 
 Success Message: File TAG.log was successfully created in the Project01 directory.
 
@@ -87,10 +89,14 @@ Execution:
    `./Project01/project_analyze.sh feature 7`
 
 Reference: some code was taken from 
-    [Using bash to find line number of a string in file](https://stackoverflow.com/questions/20026370/using-bash-script-to-find-line-number-of-string-in-file)
-    [How do you do file permissions](https://askubuntu.com/questions/528411/how-do-you-view-file-permissions)
-    [How to check if a file contains a string](https://stackoverflow.com/questions/11287861/how-to-check-if-a-file-contains-a-specific-string-using-bash)
-    [How to replace an entire line in a file by line number](https://stackoverflow.com/questions/11145270/how-to-replace-an-entire-line-in-a-text-file-by-line-number/11145362)
+
+[Using bash to find line number of a string in file](https://stackoverflow.com/questions/20026370/using-bash-script-to-find-line-number-of-string-in-file)
+
+[How do you do file permissions](https://askubuntu.com/questions/528411/how-do-you-view-file-permissions)
+ 
+[How to check if a file contains a string](https://stackoverflow.com/questions/11287861/how-to-check-if-a-file-contains-a-specific-string-using-bash)
+
+[How to replace an entire line in a file by line number](https://stackoverflow.com/questions/11145270/how-to-replace-an-entire-line-in-a-text-file-by-line-number/11145362)
 
 Success Message: 
 

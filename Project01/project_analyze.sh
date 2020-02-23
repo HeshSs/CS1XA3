@@ -79,6 +79,23 @@ elif [ "$1" == "feature" ] && [ "$2" == 7 ] ; then
     fi
     read -p "Type 'Change' if you wanna change permissions of the script files or 'Restore' if you want to restore their old permissions (without the quotes): " switch
     echo "$switch"
+    while read -r file; do
+        getfacl "$file" 2> /dev/null | while read -r line; do
+            if [[ "$line" == *"# file"* ]] ; then    
+                grep -q "$line" ~/private/CS1XA3/Project01/permissions.log
+                if [[ $? == 0 ]] ; then
+                    continue
+                fi
+                echo "$line" >> ~/private/CS1XA3/Project01/permissions.log
+            elif [[ "$line" == *"user::"* ]] ; then
+                echo "user"
+            elif [[ "$line" == *"group::"* ]] ; then
+                echo "group"
+            elif [[ "$line" == *"other::"* ]] ; then
+                echo "other"
+            fi
+        done 
+    done <<< "$files"
 
 # Custom Feature 1
 elif [ "$1" == "custom_feature" ] && [ "$2" == 1 ] ; then

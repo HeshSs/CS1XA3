@@ -74,12 +74,12 @@ elif [ "$1" == "feature" ] && [ "$2" == 6 ] ; then
 # Feature 7
 elif [ "$1" == "feature" ] && [ "$2" == 7 ] ; then
     files=`grep -Rl --include=\*.sh "" ~/private/CS1XA3/`
-    if [[ ! -e ~/private/CS1XA3/Project01/permissions.log ]] ; then
-        echo -n > ~/private/CS1XA3/Project01/permissions.log
-    fi
     read -p "Type 'Change' if you wanna change permissions of the script files or 'Restore' if you want to restore their old permissions (without the quotes): " switch
     # Change
     if [[ "$switch" == "Change" ]] ; then
+        if [[ ! -e ~/private/CS1XA3/Project01/permissions.log ]] ; then
+            echo -n > ~/private/CS1XA3/Project01/permissions.log
+        fi
         while read -r file; do
             getfacl "$file" 2> /dev/null | while read -r line; do
                 if [[ "$line" == *"# file"* ]] ; then
@@ -145,19 +145,22 @@ elif [ "$1" == "feature" ] && [ "$2" == 7 ] ; then
         echo "Permissions Changed."
     # Restore
     elif [[ "$switch" == "Restore" ]] ; then
-        while read -r rline; do
-            if [[ "$rline" == *"# file"* ]] ; then
-                filename="/${rline:8:${#rline}}"
-            elif [[ "$rline" == *"user::"* ]] ; then
-                chmod "u=${rline:6:${#rline}}" "$filename"
-            elif [[ "$rline" == *"group::"* ]] ; then
-                chmod "g=${rline:7:${#rline}}" "$filename"
-            elif [[ "$rline" == *"other::"* ]] ; then
-                chmod "o=${rline:7:${#rline}}" "$filename"
-            fi
-
-        done <<< `cat ~/private/CS1XA3/Project01/permissions.log`
-        echo "Permissions Restored."
+        if [[ -e ~/private/CS1XA3/Project01/permissions.log ]] ; then
+            while read -r rline; do
+                if [[ "$rline" == *"# file"* ]] ; then
+                    filename="/${rline:8:${#rline}}"
+                elif [[ "$rline" == *"user::"* ]] ; then
+                    chmod "u=${rline:6:${#rline}}" "$filename"
+                elif [[ "$rline" == *"group::"* ]] ; then
+                    chmod "g=${rline:7:${#rline}}" "$filename"
+                elif [[ "$rline" == *"other::"* ]] ; then
+                    chmod "o=${rline:7:${#rline}}" "$filename"
+                fi
+            done <<< `cat ~/private/CS1XA3/Project01/permissions.log`
+            echo "Permissions Restored."
+        else
+            echo "File permissions.log doesn't exist in Project01 directory."
+        fi
     else 
         echo "Usage: "
         echo "Change   -> To Change the permissions."

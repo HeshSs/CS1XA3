@@ -81,9 +81,12 @@ elif [ "$1" == "feature" ] && [ "$2" == 7 ] ; then
     echo "$switch"
     while read -r file; do
         getfacl "$file" 2> /dev/null | while read -r line; do
-            if [[ "$line" == *"# file"* ]] ; then    
+            if [[ "$line" == *"# file"* ]] ; then
+                current="$line"
                 grep -q "$line" ~/private/CS1XA3/Project01/permissions.log
                 if [[ $? == 0 ]] ; then
+                    lineNum=`grep -n "$line" ~/private/CS1XA3/Project01/permissions.log | head -n 1 | cut -d: -f1`
+                    sed -i "${linNum}s|.*|${line}|" ~/private/CS1XA3/Project01/permissions.log
                     continue
                 fi
                 echo "$line" >> ~/private/CS1XA3/Project01/permissions.log

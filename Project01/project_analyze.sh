@@ -78,27 +78,49 @@ elif [ "$1" == "feature" ] && [ "$2" == 7 ] ; then
         echo -n > ~/private/CS1XA3/Project01/permissions.log
     fi
     read -p "Type 'Change' if you wanna change permissions of the script files or 'Restore' if you want to restore their old permissions (without the quotes): " switch
-    echo "$switch"
-    while read -r file; do
-        getfacl "$file" 2> /dev/null | while read -r line; do
-            if [[ "$line" == *"# file"* ]] ; then
-                current="$line"
-                grep -q "$line" ~/private/CS1XA3/Project01/permissions.log
-                if [[ $? == 0 ]] ; then
-                    lineNum=`grep -n "$line" ~/private/CS1XA3/Project01/permissions.log | head -n 1 | cut -d: -f1`
-                    sed -i "${linNum}s|.*|${line}|" ~/private/CS1XA3/Project01/permissions.log
-                    continue
+    # Change
+    if [[ "$switch" == "Change" ]] ; then
+        while read -r file; do
+            getfacl "$file" 2> /dev/null | while read -r line; do
+                if [[ "$line" == *"# file"* ]] ; then
+                    current="$line"
+                    grep -q "$line" ~/private/CS1XA3/Project01/permissions.log
+                    exit_status=$?
+                    if [[ $exit_status == 0 ]] ; then
+                        lineNum=`grep -n "$line" ~/private/CS1XA3/Project01/permissions.log | head -n 1 | cut -d: -f1`
+                    #sed -i "${linNum}s|.*|${line}|" ~/private/CS1XA3/Project01/permissions.log
+                        continue
+                    fi
+                    echo "$line" >> ~/private/CS1XA3/Project01/permissions.log
+                elif [[ "$line" == *"user::"* ]] ; then
+                    if [[ $exit_status == 0 ]] ; then
+                        sed -i "$(( $lineNum+1 ))s|.*|${line}|" ~/private/CS1XA3/Project01/permissions.log
+                        continue
+                    fi
+                    echo "$line" >> ~/private/CS1XA3/Project01/permissions.log
+                elif [[ "$line" == *"group::"* ]] ; then
+                    if [[ $exit_status == 0 ]] ; then
+                        sed -i "$(( $lineNum+2 ))s|.*|${line}|" ~/private/CS1XA3/Project01/permissions.log
+                        continue
+                    fi
+                    echo "$line" >> ~/private/CS1XA3/Project01/permissions.log
+                elif [[ "$line" == *"other::"* ]] ; then
+                    if [[ $exit_status == 0 ]] ; then
+                        sed -i "$(( $lineNum+3 ))s|.*|${line}|" ~/private/CS1XA3/Project01/permissions.log
+                        continue
+                    fi
+                    echo "$line" >> ~/private/CS1XA3/Project01/permissions.log
                 fi
-                echo "$line" >> ~/private/CS1XA3/Project01/permissions.log
-            elif [[ "$line" == *"user::"* ]] ; then
-                echo "user"
-            elif [[ "$line" == *"group::"* ]] ; then
-                echo "group"
-            elif [[ "$line" == *"other::"* ]] ; then
-                echo "other"
-            fi
-        done 
-    done <<< "$files"
+            done 
+        done <<< "$files"
+    # Restore
+    elif [[ "$switch" == "Restore" ]] ; then
+        echo "Restored"
+    else 
+        echo "Usage: "
+        echo "Change -> To Change the permissions."
+        echo "Restore -> To Restore the permissions."
+    fi
 
 # Custom Feature 1
 elif [ "$1" == "custom_feature" ] && [ "$2" == 1 ] ; then

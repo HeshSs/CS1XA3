@@ -88,7 +88,6 @@ elif [ "$1" == "feature" ] && [ "$2" == 7 ] ; then
                     exit_status=$?
                     if [[ $exit_status == 0 ]] ; then
                         lineNum=`grep -n "$line" ~/private/CS1XA3/Project01/permissions.log | head -n 1 | cut -d: -f1`
-                    #sed -i "${linNum}s|.*|${line}|" ~/private/CS1XA3/Project01/permissions.log
                         continue
                     fi
                     echo "$line" >> ~/private/CS1XA3/Project01/permissions.log
@@ -143,13 +142,26 @@ elif [ "$1" == "feature" ] && [ "$2" == 7 ] ; then
                 fi
             done 
         done <<< "$files"
+        echo "Permissions Changed."
     # Restore
     elif [[ "$switch" == "Restore" ]] ; then
-        echo "Restored"
+        while read -r rline; do
+            if [[ "$rline" == *"# file"* ]] ; then
+                filename="/${rline:8:${#rline}}"
+            elif [[ "$rline" == *"user::"* ]] ; then
+                chmod "u=${rline:6:${#rline}}" "$filename"
+            elif [[ "$rline" == *"group::"* ]] ; then
+                chmod "g=${rline:7:${#rline}}" "$filename"
+            elif [[ "$rline" == *"other::"* ]] ; then
+                chmod "o=${rline:7:${#rline}}" "$filename"
+            fi
+
+        done <<< `cat ~/private/CS1XA3/Project01/permissions.log`
+        echo "Permissions Restored."
     else 
         echo "Usage: "
-        echo "Change -> To Change the permissions."
-        echo "Restore -> To Restore the permissions."
+        echo "Change   -> To Change the permissions."
+        echo "Restore  -> To Restore the permissions."
     fi
 
 # Custom Feature 1

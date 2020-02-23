@@ -50,6 +50,59 @@ Reference: some code was taken from
 
 Success Message: The list of files and their size
 
+## Feature 5 - File Type Count
+Description: Prompts the user for a file extension (i.e. txt, pdf, py) and outputs the number of files in the repo with that file extension.
+
+Execution: 
+   `./Project01/project_analyze.sh feature 6`
+
+Reference: some code was taken from 
+    [Grep only certain file extensions](https://stackoverflow.com/questions/12516937/grep-but-only-certain-file-extensions)
+
+Success Message: A natural number, that represents the number of files in the repo with that file extension.
+
+## Feature 6 - Find Tag
+Description: Prompts the user for a TAG (i.e. any single word) and from each python (.py) file, copies every line that begins with a comment (#) and contains the TAG into a file named TAG.log (where TAG is replaced by the actual TAG that was inputted by the user.
+
+Execution: 
+   `./Project01/project_analyze.sh feature 6`
+
+Reference: some code was taken from 
+    [Grep Command in Linux](https://linuxize.com/post/how-to-use-grep-command-to-search-files-in-linux/)
+    [Bash cheat sheet](https://devhints.io/bash)
+
+Success Message: File TAG.log was successfully created in the Project01 directory.
+
+## Feature 7 - Switch to Executable
+Description: Prompts the user for to choose from 2 options:
+
+1. Change:
+    * For every shell script in the repo saves the current permissions of the file in a file named permissions.log in the Project01 directory and then for any one who has the right to write to the shell scripts will gain the right to execute it as well, if they don't have the right to write, then they lose their right to execute it as well.
+
+2. Restore:
+    * For every shell script that was logged in the permission.log file, restores it's permission to it's old (logged in permissions.log) permissions.
+    * If the permissions.log file doesn't exist, it throws an error.
+    
+Execution: 
+   `./Project01/project_analyze.sh feature 7`
+
+Reference: some code was taken from 
+    [Using bash to find line number of a string in file](https://stackoverflow.com/questions/20026370/using-bash-script-to-find-line-number-of-string-in-file)
+    [How do you do file permissions](https://askubuntu.com/questions/528411/how-do-you-view-file-permissions)
+    [How to check if a file contains a string](https://stackoverflow.com/questions/11287861/how-to-check-if-a-file-contains-a-specific-string-using-bash)
+    [How to replace an entire line in a file by line number](https://stackoverflow.com/questions/11145270/how-to-replace-an-entire-line-in-a-text-file-by-line-number/11145362)
+
+Success Message: 
+
+* If permissions change successfully:
+    `Permissions Changed.`
+    
+* If permissions restored successfully:
+    `Permissions Restored.`
+
+* If the permission.log doesn't exist when trying to change permissions:
+    `File permissions.log doesn't exist in Project01 directory.`
+
 ## Custom Feature 1 - Online Word Search
 Description: Downloads a file from web given the url (arg3) and finds all the lines with occurences of a word (arg4) and saves them into a file named (arg4).txt
 

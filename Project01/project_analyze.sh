@@ -95,21 +95,51 @@ elif [ "$1" == "feature" ] && [ "$2" == 7 ] ; then
                 elif [[ "$line" == *"user::"* ]] ; then
                     if [[ $exit_status == 0 ]] ; then
                         sed -i "$(( $lineNum+1 ))s|.*|${line}|" ~/private/CS1XA3/Project01/permissions.log
+                        if [[ "$line" == *"w"* ]] ; then
+                            chmod u+x "$file"
+                        else 
+                            chmod u-x "$file"
+                        fi
                         continue
                     fi
                     echo "$line" >> ~/private/CS1XA3/Project01/permissions.log
+                    if [[ "$line" == *"w"* ]] ; then
+                        chmod u+x "$file"
+                    else 
+                        chmod u-x "$file"
+                    fi
                 elif [[ "$line" == *"group::"* ]] ; then
                     if [[ $exit_status == 0 ]] ; then
                         sed -i "$(( $lineNum+2 ))s|.*|${line}|" ~/private/CS1XA3/Project01/permissions.log
+                        if [[ "$line" == *"w"* ]] ; then
+                            chmod g+x "$file"
+                        else 
+                            chmod g-x "$file"
+                        fi
                         continue
                     fi
                     echo "$line" >> ~/private/CS1XA3/Project01/permissions.log
+                    if [[ "$line" == *"w"* ]] ; then
+                        chmod g+x "$file"
+                    else
+                        chmod g-x "$file"
+                    fi
                 elif [[ "$line" == *"other::"* ]] ; then
                     if [[ $exit_status == 0 ]] ; then
                         sed -i "$(( $lineNum+3 ))s|.*|${line}|" ~/private/CS1XA3/Project01/permissions.log
+                        if [[ "$line" == *"w"* ]] ; then
+                            chmod o+x "$file"
+                        else 
+                            chmod o-x "$file"
+                        fi
                         continue
                     fi
                     echo "$line" >> ~/private/CS1XA3/Project01/permissions.log
+                    if [[ "$line" == *"w"* ]] ; then
+                        chmod o+x "$file"
+                    else
+                        chmod o-x "$file"
+                    fi
                 fi
             done 
         done <<< "$files"

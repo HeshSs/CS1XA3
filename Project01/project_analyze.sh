@@ -172,7 +172,20 @@ elif [ "$1" == "feature" ] && [ "$2" == 7 ] ; then
 
 # Custom Feature 1
 elif [ "$1" == "custom_feature" ] && [ "$2" == 1 ] ; then
-    echo "Custom Feature 1"
+    #echo "Custom Feature 1"
+    read -p "Enter the text file's url: " url
+    while  [[ ! "$url" == *".txt" ]] ; do
+        read -p "The file must be a .txt file (ascii file), Ctrl-C to exit or Re-enter url: " url
+    done
+    read -p "Enter the word that you wanna search in the file: " word
+    wget -O file.txt -q "$url"
+    while read -r line; do
+        if [[ "$line" == "$word" ]] ; then
+            echo "$line" >> "${word}.log"
+        fi
+    done <<< `cat file.txt`
+    cat "${word}.log"
+
 
 # Custom Feature 2
 elif [ "$1" == "custom_feature" ] && [ "$2" == 2 ] ; then

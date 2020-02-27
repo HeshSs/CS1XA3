@@ -117,6 +117,10 @@ Then, it downloads the file from web given url (prompt 1) and finds all the line
 
 Executation: 
    `./Project01/project_analyze.sh custom_feature 1`
+   
+Example:
+* url = `https://mac1xa3.ca/`
+* word = `html`
 
 Reference: some code was taken from 
 

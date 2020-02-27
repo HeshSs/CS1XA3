@@ -110,15 +110,23 @@ Success Message:
     `File permissions.log doesn't exist in Project01 directory.`
 
 ## Custom Feature 1 - Online Word Search
-Description: Downloads a file from web given the url (arg3) and finds all the lines with occurences of a word (arg4) and saves them into a file named (arg4).txt
+Description: Prompts user for a url (Preferably a .html or .txt) and then prompts for a word that user wants to be searched in that file. 
+* If the url or the file is invalid, it keeps reprompting until a valid url is inputted or CTRL-C is pressed.
+
+Then, it downloads the file from web given url (prompt 1) and finds all the lines with occurences of the word (prompt 2) and saves them into a file named WORD.log, where WORD is replaced by the inputted word in the Project01 directory.
 
 Executation: 
-   `./Project01/project_analyze.sh custom_feature 1 url word`
+   `./Project01/project_analyze.sh custom_feature 1`
 
-Reference: 
-    N/A
+Reference: some code was taken from 
 
-Success Message: N/A
+[wget output document and headers to stdout](https://stackoverflow.com/questions/12120935/wget-output-document-and-headers-to-stdout)
+
+[how to download a file from a website via terminal](https://askubuntu.com/questions/207265/how-to-download-a-file-from-a-website-via-terminal)
+
+[wget to print errors but nothing otherwise](https://serverfault.com/questions/70889/wget-to-print-errors-but-nothing-otherwise)
+
+Success Message: File WORD.log was created successfully in the Project01 directory.
 
 ## Custom Feature 2 - My TODO List
 Description: Given an option Add, Remove or Save (arg3) and Message (arg4) keeps track of my TODO list in a file named TODO.log

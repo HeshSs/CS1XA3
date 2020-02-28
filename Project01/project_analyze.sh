@@ -193,19 +193,32 @@ elif [ "$1" == "custom_feature" ] && [ "$2" == 1 ] ; then
 
 # Custom Feature 2
 elif [ "$1" == "custom_feature" ] && [ "$2" == 2 ] ; then
-    read -p "Type Add, Remove, Show or Save to add a TODO, remove a TODO, show the TODO list or save the TODO list into TODO.log: " option
+    read -p "Type Add, Remove, Show or Save to add a TODO, remove a TODO, show the TODO list or save the TODO list into TODO.txt: " option
     # Add
     if [[ "$option" == "Add" ]] ; then
-        echo "add"
+        if [[ ! -e ~/private/CS1XA3/Project01/TODO.log ]] ; then
+            echo -n > ~/private/CS1XA3/Project01/TODO.log
+        fi 
+        read -p "Enter your TODO's message here: " message
+        hash=`echo "$message" | md5sum`
+        echo "${hash:0:32}"
+        echo "${hash} $message" >> ~/private/CS1XA3/Project01/TODO.log
+        #cat ~/private/CS1XA3/Project01/TODO.log
     # Remove
     elif [[ "$option" == "Remove" ]] ; then
-        echo "remove"
+        read -p "Enter your TODO's number here: " number
+        sed -i -e "/${number}/d" ~/private/CS1XA3/Project01/TODO.log
     # Show
     elif [[ "$option" == "Show" ]] ; then
-        echo "show"
+        cat ~/private/CS1XA3/Project01/TODO.log
     # Save
     elif [[ "$option" == "Save" ]] ; then
-        echo "save"
+        counter=1
+        while read -r line; do
+            echo "${counter} ${line:34:${#line}}" >> ~/private/CS1XA3/Project01/TODO.txt
+            counter=$(( counter+1 ))
+        done <<< `cat ~/private/CS1XA3/Project01/TODO.log`
+        cat ~/private/CS1XA3/Project01/TODO.txt
     else 
         echo "Usage: "
         echo "Add    -> to Add a TODO to the list."

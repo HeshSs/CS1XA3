@@ -187,11 +187,30 @@ elif [ "$1" == "custom_feature" ] && [ "$2" == 1 ] ; then
             echo "$line" >> ~/private/CS1XA3/Project01/${word}.log
         fi
     done <<< `cat file.txt`
-    #cat "${word}.log"
     rm error.log
     rm file.txt
+    echo "File ${word}.log was created successfully in the Project01 directory."
 
 # Custom Feature 2
 elif [ "$1" == "custom_feature" ] && [ "$2" == 2 ] ; then
-    echo "Custom Feature 2"
+    read -p "Type Add, Remove, Show or Save to add a TODO, remove a TODO, show the TODO list or save the TODO list into TODO.log: " option
+    # Add
+    if [[ "$option" == "Add" ]] ; then
+        echo "add"
+    # Remove
+    elif [[ "$option" == "Remove" ]] ; then
+        echo "remove"
+    # Show
+    elif [[ "$option" == "Show" ]] ; then
+        echo "show"
+    # Save
+    elif [[ "$option" == "Save" ]] ; then
+        echo "save"
+    else 
+        echo "Usage: "
+        echo "Add    -> to Add a TODO to the list."
+        echo "Remove -> to Remove a TODO from the list."
+        echo "Save   -> to Save all the TODO's into a file."
+    fi
+    #echo "Custom Feature 2"
 fi

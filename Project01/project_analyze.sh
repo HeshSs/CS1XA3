@@ -234,3 +234,4 @@ elif [ "$1" == "custom_feature" ] && [ "$2" == 2 ] ; then
         echo "Save   -> to Save all the TODO's into TODO.txt in the Project01 directory."
     fi
 fi
+# Done Project 1 Part 2

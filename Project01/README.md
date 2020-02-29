@@ -133,16 +133,33 @@ Reference: some code was taken from
 Success Message: File WORD.log was created successfully in the Project01 directory.
 
 ## Custom Feature 2 - My TODO List
-Description: Given an option Add, Remove or Save (arg3) and Message (arg4) keeps track of my TODO list in a file named TODO.log
-  - Has 3 options:
-    * Add - Adds a new TODO to my todo list and returns the TODO's number
-    * Remove - Given a TODO's number, removes it from the TODO list
-    * Save - Saves all the TODO items to a file named TODO.txt, overwrites it if it exits
+Description: Given an option Add, Remove, Show or Save (Prompt 1) keeps track of my TODO list in a file named TODO.log
+  - Has 4 options:
+    * Add - Prompts user for a message, and adds the new TODO to my TODO list and returns the TODO's Hash number
+    * Remove - Prompts the user for a TODO's Hash number, and removes it from the TODO list
+    * Show - Shows all the current TODOs and their Hash numbers.
+    * Save - Saves all the TODO items to a file named TODO.txt in the Project01 directory, overwrites it if it exists
     
 Executation: 
-   `./Project01/project_analyze.sh custom_feature 2 option 'TODO message in quotes'`
+   `./Project01/project_analyze.sh custom_feature 2`
 
-Reference: 
-    N/A
-Success Message: N/A
+Reference: some code was taken from 
+
+[Creating md5 Hash numbers](https://www.cyberciti.biz/faq/linux-md5-hash-string-based-on-any-input-string/)
+
+[Delete lines in a text file that contains a specific string](https://stackoverflow.com/questions/5410757/delete-lines-in-a-text-file-that-contain-a-specific-string)
+    
+Success Message for each option: 
+
+* Add:
+    `TODO's Hash number = ################################`
+    
+* Remove:
+    `TODO with Hash number ################################ was removed.`
+
+* Show:
+    A list of TODO's and their Hash numbers with format: `################################  - TODO message`
+
+* Save:
+    `File TODO.txt was successfully created in the Project01 directory.`
 

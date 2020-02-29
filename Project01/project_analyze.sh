@@ -151,7 +151,7 @@ elif [ "$1" == "feature" ] && [ "$2" == 7 ] ; then
         if [[ -e  Project01/permissions.log ]] ; then
             while read -r rline; do
                 if [[ "$rline" == *"# file"* ]] ; then
-                    filename="/${rline:8:${#rline}}"
+                    filename="${rline:8:${#rline}}"
                 elif [[ "$rline" == *"user::"* ]] ; then
                     chmod "u=${rline:6:${#rline}}" "$filename"
                 elif [[ "$rline" == *"group::"* ]] ; then

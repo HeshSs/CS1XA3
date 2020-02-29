@@ -213,12 +213,19 @@ elif [ "$1" == "custom_feature" ] && [ "$2" == 2 ] ; then
         cat  Project01/TODO.log
     # Save
     elif [[ "$option" == "Save" ]] ; then
-        counter=1
-        while read -r line; do
-            echo "${counter} ${line:34:${#line}}" >>  Project01/TODO.txt
-            counter=$(( counter+1 ))
-        done <<< `cat  Project01/TODO.log`
-        echo "File TODO.txt was successfully created in the Project01 directory."
+        if [[ -e  Project01/TODO.txt ]] ; then
+            rm Project01/TODO.txt
+        fi
+        if [[ -e Project01/TODO.log ]] ; then
+            counter=1
+            while read -r line; do
+                echo "${counter} ${line:34:${#line}}" >>  Project01/TODO.txt
+                counter=$(( counter+1 ))
+            done <<< `cat  Project01/TODO.log`
+            echo "File TODO.txt was successfully created in the Project01 directory."
+        else 
+            echo "You have to have some TODOs to save, try Add."
+        fi
     else 
         echo "Usage: "
         echo "Add    -> to Add a TODO to the list. Prompts for TODO's message. "

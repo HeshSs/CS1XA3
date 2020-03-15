@@ -14,15 +14,20 @@ function getRandomColor() {
 
 function darkMode() {
 	var element = document.body;
+	var button = document.getElementById("theme");
 	element.classList.toggle("dark-mode");
 
 	if (counter % 2 == 0) {
-	 	$(".resume-wrapper").css("background-color", "#212121");
+		$(".resume-wrapper").css("background-color", "#212121");
 		$(".resume-wrapper").css("color", "white");
 	} else {
 		$(".resume-wrapper").css("background-color", "white");
 		$(".resume-wrapper").css("color", "black");
 	}
+
+	if (button.innerHTML == "Dark Mode") button.innerHTML = "Light Mode";
+	else button.innerHTML = "Dark Mode";
+
 	counter++;
 
 

@@ -1,0 +1,16 @@
+function getRandomColor() {
+	  var letters = '0123456789ABCDEF';
+	  var color = '#';
+	  for (var i = 0; i < 6; i++) {
+		      color += letters[Math.floor(Math.random() * 16)];
+		    }
+	  return color;
+}
+
+
+$(document).ready(function(){
+	$(".bar").mousemove(function(){
+		  $(this).css("background-color", getRandomColor());
+	});
+});
+

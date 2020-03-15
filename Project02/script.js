@@ -1,6 +1,3 @@
-//import {MDCRipple} from '@material/ripple';
-
-//const buttonRipple = new MDCRipple(document.querySelector('.mdc-button'));
 var counter = 0;
 
 function getRandomColor() {
@@ -37,4 +34,6 @@ $(document).ready(function(){
 	$(".bar").mousemove(function(){
 		$(this).css("background-color", getRandomColor());
 	});
+	
 });
+

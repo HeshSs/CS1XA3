@@ -1,4 +1,3 @@
-
 body {
 	margin: 0 ;
 	padding: 0 ;
@@ -42,6 +41,10 @@ body {
 	color: #455A64;
 
 	transition: background-color .3s;
+}
+
+#qlist {
+	font-size: 13px;
 }
 
 /* header */
@@ -164,7 +167,7 @@ header .contact-container .contact-list li span {
 }
 
 #main .resume-item ul li:hover {
-	transform: scale(1.3); 	
+	transform: scale(1.15); 	
 }
 
 #main ul li {
@@ -173,24 +176,24 @@ header .contact-container .contact-list li span {
 }
 
 
-/* experience */
-.experience h3 {
+/* education */
+.education h3 {
 	font-size: 18px ;
 }
-.experience .company {
+.education .company {
 	margin: 0 0 10px ;
 	color: #959595 ;
 	font-size: 13px ;
 	font-weight: normal ;
 }
-.experience .date {
+.education .date {
 	position: absolute ;
 	top: 5px ;
 	right: 0 ;
 	color: #bbb ;
 	font-size: 12px ;
 }
-.experience .detail {
+.education .detail {
 	font-size: 14px ;
 }
 

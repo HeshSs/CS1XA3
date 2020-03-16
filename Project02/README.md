@@ -1,7 +1,7 @@
 # CS 1XA3 Project02 - Salehh6
 
 ## Overview
-This webpage is Hishmat Salehi's custom resume created from dhpark's template. Custom animation features are added to this resume (e.g. Darkmode, color changing bars, etc.) to draw attention of the reader.
+This webpage is Hishmat Salehi's custom resume created from dhpark's template. Custom animation features are added to this resume (e.g. Darkmode, color changing bars, etc.) to draw the attention of reader.
 
 ## Javascript/JQuery features
 ### Feature 1: Dark/Light themes

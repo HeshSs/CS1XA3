@@ -1,5 +1,6 @@
 var counter = 0;
 
+// Random Color Generator
 function getRandomColor() {
 	var letters = '0123456789ABCDEF';
 	var color = '#';
@@ -9,6 +10,7 @@ function getRandomColor() {
 	return color;
 }
 
+// Dark Mode
 function darkMode() {
 	var element = document.body;
 	var button = document.getElementById("theme");
@@ -30,8 +32,9 @@ function darkMode() {
 
 }
 
+// Change bar color
 $(document).ready(function(){
-	$(".bar").mousemove(function(){
+	$(".bar").mouseover(function(){
 		$(this).css("background-color", getRandomColor());
 	});
 	

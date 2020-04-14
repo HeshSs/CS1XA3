@@ -47,24 +47,40 @@ def account_view(request):
                         (if handled in this view)
     """
 
-    # Objective 3: Create Forms and Handle POST to Update Password
+    # Objective 3: Create Forms and Handle POST to Update Password / UserInfo
     if request.user.is_authenticated:
 
+        user_info = models.UserInfo.objects.get(user=request.user)
         if request.method == 'POST':
-            form = PasswordChangeForm(request.user, request.POST)
-            if form.is_valid():
-                user = form.save()
+
+            # Password change
+            password_form = PasswordChangeForm(request.user, request.POST)
+            if password_form.is_valid():
+                user = password_form.save()
                 update_session_auth_hash(request, user)
                 return redirect('social:account_view')
+
+            # User Info change
+            user_form = models.ModifyInfoForm()
+            if user_form.is_valid():
+                user_info.employment = user_form.cleaned_data.get('employment')
+                user_info.employment.save()
+
+                user_info.location = user_form.cleaned_data.get('location')
+                user_info.location.save()
+
+                user_info.birthday = user_form.cleaned_data.get('birthday')
+                user_info.birthday.save()
+
+                interests = user_form.cleaned_data.get('interests')
+
         else:
-            form = PasswordChangeForm(request.user)
+            password_form = PasswordChangeForm(request.user)
+            user_form = models.ModifyInfoForm()
 
-        user_info = models.UserInfo.objects.get(user=request.user)
         context = {'user_info': user_info,
-                   'password_change_form': form}
+                   'password_change_form': password_form, 'user_info_form': user_form}
         return render(request, 'account.djhtml', context)
-
-    # TODO Objective 3: Create Forms and Handle POST to Update UserInfo
 
     request.session['failed'] = True
     return redirect('login:login_view')

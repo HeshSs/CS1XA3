@@ -16,7 +16,7 @@
       <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
       <form id="signup_form" method="post" action="{% url 'login:create_view' %}">
         {% csrf_token %}
-            <table>
+            <table border="0.5">
                 {{ signup_form.as_table }}
                 <tr>
                     <td></td>

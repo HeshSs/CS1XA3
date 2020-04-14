@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django import forms
 
 
 class Interest(models.Model):
@@ -20,7 +21,7 @@ class UserInfo(models.Model):
                                 primary_key=True)
     objects = UserInfoManager()
     employment = models.CharField(max_length=30, default='Unspecified')
-    location = models.CharField(max_length=50, default='Unspecified')
+    location = models.CharField(max_length=30, default='Unspecified')
     birthday = models.DateField(null=True, blank=True)
     interests = models.ManyToManyField(Interest)
     friends = models.ManyToManyField('self')
@@ -42,3 +43,11 @@ class FriendRequest(models.Model):
     from_user = models.ForeignKey(UserInfo,
                                   on_delete=models.CASCADE,
                                   related_name='from_users')
+
+
+class ModifyInfoForm(forms.Form):
+    note = "Interests are separated by ','"
+    employment = forms.CharField(max_length=30)
+    location = forms.CharField(max_length=30)
+    birthday = forms.DateField(input_formats=['%d/%m/%Y'])
+    interests = forms.CharField(max_length=100)

@@ -83,9 +83,9 @@ def create_view(request):
             raw_password = form.cleaned_data.get('password1')
             models.UserInfo.objects.create_user_info(
                 username=username, password=raw_password)
-            user = authenticate(username=username, password=raw_password)
+            user = authenticate(request, username=username, password=raw_password)
             login(request, user)
-            return redirect('login:login_view')
+            return redirect('social:messages_view')
 
     request.session['signup_failed'] = True
     return redirect('login:signup_view')

@@ -38,8 +38,8 @@
             <p>Interests</p>
             <p>
                 <!--                 Objective 2: Add Currently Logged In User Interests -->
-                {% for interest in user_info.intersets %}
-                    <span class="w3-tag w3-small w3-theme-d5"> {{interest}} </span>
+                {% for interest in user_info.interests.all %}
+                    <span class="w3-tag w3-small w3-theme-d5"> {{ interest.label }} </span>
                 {% endfor %}
             </p>
         </div>

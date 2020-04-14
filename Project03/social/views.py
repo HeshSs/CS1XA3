@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, PasswordChangeForm
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib import messages
+from dateutil import parser
 
 from . import models
 
@@ -49,30 +50,39 @@ def account_view(request):
 
     # Objective 3: Create Forms and Handle POST to Update Password / UserInfo
     if request.user.is_authenticated:
-
         user_info = models.UserInfo.objects.get(user=request.user)
+
         if request.method == 'POST':
+            password_form = PasswordChangeForm(request.user, request.POST)
+            user_form = models.ModifyInfoForm(request.POST)
 
             # Password change
-            password_form = PasswordChangeForm(request.user, request.POST)
             if password_form.is_valid():
                 user = password_form.save()
                 update_session_auth_hash(request, user)
                 return redirect('social:account_view')
 
             # User Info change
-            user_form = models.ModifyInfoForm()
             if user_form.is_valid():
+
+                # Update user info
                 user_info.employment = user_form.cleaned_data.get('employment')
-                user_info.employment.save()
-
                 user_info.location = user_form.cleaned_data.get('location')
-                user_info.location.save()
-
                 user_info.birthday = user_form.cleaned_data.get('birthday')
-                user_info.birthday.save()
 
-                interests = user_form.cleaned_data.get('interests')
+                # Save interests        
+                L = user_form.cleaned_data.get('interests').split(",")
+                interests = list()
+                for i in L:
+                    interest = models.Interest(label=i)
+                    interest.save()
+                    interests.append(interest)
+                print(interests)
+                user_info.interests.add(*interests)
+
+                # Save all data
+                user_info.save()
+
 
         else:
             password_form = PasswordChangeForm(request.user)

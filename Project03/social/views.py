@@ -108,8 +108,12 @@ def people_view(request):
     """
     if request.user.is_authenticated:
         user_info = models.UserInfo.objects.get(user=request.user)
-        # TODO Objective 4: create a list of all users who aren't friends to the current user (and limit size)
+        # Objective 4: create a list of all users who aren't friends to the current user (and limit size)
         all_people = []
+        users = models.UserInfo.objects.all()
+        for user in users:
+            if user not in user_info.friends.all() and user != user_info:
+                all_people.append(user)
 
         # TODO Objective 5: create a list of all friend requests to current user
         friend_requests = []

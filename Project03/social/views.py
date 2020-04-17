@@ -292,6 +292,9 @@ def accept_decline_view(request):
     data = request.POST.get('decision')
     if data is not None:
         # TODO Objective 6: parse decision from data
+        decision = data[0]
+        username = data[2:]
+
 
         if request.user.is_authenticated:
 

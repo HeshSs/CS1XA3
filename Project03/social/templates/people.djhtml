@@ -35,13 +35,13 @@
           <span> {{ friend_request.from_user.user.username }} </span>
           <div class="w3-row w3-opacity">
             <div class="w3-half">
-                <!-- TODO Objective 6: make id specific to user who sent request -->
-                <button id="A-USERNAME" class="w3-button w3-block w3-green w3-section acceptdecline-button" title="Accept">
+                <!-- Objective 6: make id specific to user who sent request -->
+                <button id="A-{{ friend_request.from_user.user.username }}" class="w3-button w3-block w3-green w3-section acceptdecline-button" title="Accept">
                     <i class="fa fa-check"></i></button>
             </div>
             <div class="w3-half">
-                <!-- TODO Objective 6: make id specific to user who sent request -->
-                <button id="D-USERNAME" class="w3-button w3-block w3-red w3-section acceptdecline-button" title="Decline">
+                <!-- Objective 6: make id specific to user who sent request -->
+                <button id="D-{{ friend_request.from_user.user.username }}" class="w3-button w3-block w3-red w3-section acceptdecline-button" title="Decline">
                     <i class="fa fa-remove"></i></button>
             </div>
           </div>

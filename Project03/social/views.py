@@ -70,7 +70,7 @@ def account_view(request):
                 user_info.location = user_form.cleaned_data.get('location')
                 user_info.birthday = user_form.cleaned_data.get('birthday')
 
-                # Save interests        
+                # Save interests
                 L = user_form.cleaned_data.get('interests').split(",")
                 interests = list()
                 for i in L:
@@ -82,7 +82,6 @@ def account_view(request):
 
                 # Save all data
                 user_info.save()
-
 
         else:
             password_form = PasswordChangeForm(request.user)
@@ -118,10 +117,9 @@ def people_view(request):
         for user in users:
             if user not in user_info.friends.all() and user != user_info:
                 all_people.append(user)
-        
-        print(type(show))
+
         all_people = all_people[:show]
-        
+
         # TODO Objective 5: create a list of all friend requests to current user
         friend_requests = []
 
@@ -231,7 +229,6 @@ def more_ppl_view(request):
         # Objective 4: increment session variable for keeping track of num ppl displayed
         request.session['show'] = int(request.session.get('show')) + 1
 
-
         # return status='success'
         return HttpResponse()
 
@@ -255,9 +252,15 @@ def friend_request_view(request):
     if frID is not None:
         # remove 'fr-' from frID
         username = frID[3:]
-
+        
+        # Objective 5: add new entry to FriendRequest
         if request.user.is_authenticated:
-            # TODO Objective 5: add new entry to FriendRequest
+            from_user_info = models.UserInfo.objects.get(user=request.user)
+            user = models.User.objects.get(username=username)
+            to_user_info = models.UserInfo.objects.get(user=user)
+
+            friend_request = models.FriendRequest(from_user=from_user_info, to_user=to_user_info)
+            friend_request.save()
 
             # return status='success'
             return HttpResponse()

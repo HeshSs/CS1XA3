@@ -77,7 +77,6 @@ def account_view(request):
                     interest = models.Interest(label=i)
                     interest.save()
                     interests.append(interest)
-                print(interests)
                 user_info.interests.add(*interests)
 
                 # Save all data
@@ -120,8 +119,13 @@ def people_view(request):
 
         all_people = all_people[:show]
 
-        # TODO Objective 5: create a list of all friend requests to current user
+        # Objective 5: create a list of all friend requests to current user
+        all_requests = models.FriendRequest.objects.all()
         friend_requests = []
+        
+        for friend_request in all_requests:
+            if friend_request.to_user == user_info:
+                friend_requests.append(friend_request)
 
         context = {'user_info': user_info,
                    'all_people': all_people,
@@ -252,7 +256,7 @@ def friend_request_view(request):
     if frID is not None:
         # remove 'fr-' from frID
         username = frID[3:]
-        
+
         # Objective 5: add new entry to FriendRequest
         if request.user.is_authenticated:
             from_user_info = models.UserInfo.objects.get(user=request.user)

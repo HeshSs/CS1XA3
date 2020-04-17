@@ -25,13 +25,14 @@
 {% endblock %}
 
 {% block right_column %}
-    <!-- TODO Objective 5: Use friend_requests list to render friend requests to user -->
-      <div class="w3-card w3-round w3-white w3-center">
+    <!-- Objective 5: Use friend_requests list to render friend requests to user -->
+    {% for friend_request in friend_requests  %}
+        <div class="w3-card w3-round w3-white w3-center">
         <div class="w3-container">
           <p>Friend Request</p>
           {% load static %}
           <img src="{% static 'avatar.png'  %}" alt="Avatar" style="width:50%"><br>
-          <span> TODO User name {{ frID|slice:"3:" }} </span>
+          <span> {{ friend_request.from_user.user.username }} </span>
           <div class="w3-row w3-opacity">
             <div class="w3-half">
                 <!-- TODO Objective 6: make id specific to user who sent request -->
@@ -45,8 +46,9 @@
             </div>
           </div>
         </div>
-      </div>
-      <br>
+        </div>
+        <br>
+    {% endfor %}
 {% endblock %}
 
 {% block script %}

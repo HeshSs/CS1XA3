@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, PasswordChangeForm
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib import messages
-from dateutil import parser
+from datetime import datetime
 
 from . import models
 
@@ -188,9 +188,15 @@ def post_submit_view(request):
     if postContent is not None:
         if request.user.is_authenticated:
 
-            # TODO Objective 8: Add a new entry to the Post model
+            # Objective 8: Add a new entry to the Post model
             print(postContent)
-            
+            # Post info
+            user_info = models.UserInfo.objects.get(user=request.user)
+            time = datetime.now()
+            post = models.Post(owner=user_info, content=postContent, timestamp=time)
+
+            # Save post
+            post.save()
 
             # return status='success'
             return HttpResponse()

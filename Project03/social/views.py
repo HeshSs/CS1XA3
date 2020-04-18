@@ -189,6 +189,8 @@ def post_submit_view(request):
         if request.user.is_authenticated:
 
             # TODO Objective 8: Add a new entry to the Post model
+            print(postContent)
+            
 
             # return status='success'
             return HttpResponse()

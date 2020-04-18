@@ -2,9 +2,28 @@
    | Handle Submitting Posts - called by $('#post-button').click(submitPost)
    ********************************************************************************************
    */
+function spResponse(data, status) {
+    if (status == 'success') {
+        // reload page to update like count
+        location.reload();
+    } else {
+        alert('failed to submit post ' + status);
+    }
+}
+
 function submitPost(event) {
-    alert('Post Button Pressed');
-    // TODO Objective 8: send contents of post-text via AJAX Post to post_submit_view (reload page upon success)
+    // Objective 8: send contents of post-text via AJAX Post to post_submit_view (reload page upon success)
+
+    // Get the text from the <p> with id = post-text
+    let postContent = document.getElementById("post-text").textContent;
+    let json_data = { 'postContent': postContent };
+
+    let url_path = post_submit_url;
+
+    // AJAX post
+    $.post(url_path,
+        json_data,
+        spResponse);
 }
 
 /* ********************************************************************************************
@@ -20,7 +39,7 @@ function submitLike(event) {
    | Handle Requesting More Posts - called by $('#more-button').click(submitMore)
    ********************************************************************************************
    */
-function moreResponse(data,status) {
+function moreResponse(data, status) {
     if (status == 'success') {
         // reload page to display new Post
         location.reload();
@@ -32,21 +51,21 @@ function moreResponse(data,status) {
 
 function submitMore(event) {
     // submit empty data
-    let json_data = { };
+    let json_data = {};
     // globally defined in messages.djhtml using i{% url 'social:more_post_view' %}
     let url_path = more_post_url;
 
     // AJAX post
     $.post(url_path,
-           json_data,
-           moreResponse);
+        json_data,
+        moreResponse);
 }
 
 /* ********************************************************************************************
    | Document Ready (Only Execute After Document Has Been Loaded)
    ********************************************************************************************
    */
-$(document).ready(function() {
+$(document).ready(function () {
     // handle post submission
     $('#post-button').click(submitPost);
     // handle likes

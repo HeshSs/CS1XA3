@@ -304,24 +304,17 @@ def accept_decline_view(request):
             from_user_info = models.UserInfo.objects.get(user=request.user)
             user = models.User.objects.get(username=username)
             to_user_info = models.UserInfo.objects.get(user=user)
-            friend_requests = models.FriendRequest.objects.all()
-            # print("from" + from_user_info.user.username)
-            # print("to" + to_user_info.user.username)
 
             # Delete the friend request
-            for friend_request in friend_requests:
-                print(friend_request.to_user.user.username == to_user_info.user.username)
-                print(friend_request.from_user.user.username == from_user_info.user.username)
-                if (friend_request.to_user.user.username == to_user_info.user.username
-                        and friend_request.from_user.user.username == from_user_info.user.username):
-                    friend_request.delete()
+            models.FriendRequest.objects.get(
+                from_user=to_user_info, to_user=from_user_info).delete()
 
             # Add the users as friends
             if decision == 'A':
                 from_user_info.friends.add(to_user_info)
                 to_user_info.friends.add(from_user_info)
 
-                # return status='success'
+            # return status='success'
             return HttpResponse()
         else:
             return redirect('login:login_view')

@@ -21,7 +21,13 @@ def messages_view(request):
         user_info = models.UserInfo.objects.get(user=request.user)
 
         # Objective 9: query for posts (HINT only return posts needed to be displayed)
+        # number of posts to show
+        request.session['show_post'] = request.session.get('show_post', 1)
+        show_post = int(request.session.get('show_post', 1))
+
         posts = list(models.Post.objects.all().order_by('-timestamp'))
+
+        posts = posts[:show_post]
 
         # TODO Objective 10: check if user has like post, attach as a new attribute to each post
 
@@ -216,7 +222,9 @@ def more_post_view(request):
     if request.user.is_authenticated:
         # update the # of posts dispalyed
 
-        # TODO Objective 9: update how many posts are displayed/returned by messages_view
+        # Objective 9: update how many posts are displayed/returned by messages_view
+        request.session['show_post'] = int(
+            request.session.get('show_post')) + 1
 
         # return status='success'
         return HttpResponse()
@@ -300,7 +308,6 @@ def accept_decline_view(request):
                              then returns an empty HttpResponse, 404 if POST data doesn't contain decision
     '''
     data = request.POST.get('decision')
-    print(data)
     if data is not None:
         # Objective 6: parse decision from data
         decision = data[0]
@@ -316,7 +323,7 @@ def accept_decline_view(request):
             models.FriendRequest.objects.get(
                 from_user=to_user_info, to_user=from_user_info).delete()
 
-            # Add the users as friends
+            # Add the users as friends if friend request was accepted
             if decision == 'A':
                 from_user_info.friends.add(to_user_info)
                 to_user_info.friends.add(from_user_info)

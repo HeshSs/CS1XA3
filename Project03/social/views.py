@@ -37,8 +37,8 @@ def messages_view(request):
                 liked_posts[post] = True
             else:
                 liked_posts[post] = False
-            #print(liked_posts.get(post))
-        
+            # print(liked_posts.get(post))
+
         posts = liked_posts
 
         context = {'user_info': user_info, 'posts': posts}
@@ -338,9 +338,13 @@ def accept_decline_view(request):
             user = models.User.objects.get(username=username)
             to_user_info = models.UserInfo.objects.get(user=user)
 
-            # Delete the friend request
+            # Delete the friend request(s)
             models.FriendRequest.objects.get(
                 from_user=to_user_info, to_user=from_user_info).delete()
+            if (models.FriendRequest.objects.filter(
+                    from_user=from_user_info, to_user=to_user_info).exists()):
+                models.FriendRequest.objects.filter(
+                    from_user=from_user_info, to_user=to_user_info).delete()
 
             # Add the users as friends if friend request was accepted
             if decision == 'A':

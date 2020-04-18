@@ -29,7 +29,7 @@ def messages_view(request):
 
         posts = posts[:show_post]
 
-        # TODO Objective 10: check if user has like post, attach as a new attribute to each post
+        # TODO Objective 10: check if user has liked post, attach as a new attribute to each post
 
         context = {'user_info': user_info, 'posts': posts}
         return render(request, 'messages.djhtml', context)
@@ -163,11 +163,20 @@ def like_view(request):
     postIDReq = request.POST.get('postID')
     if postIDReq is not None:
         # remove 'post-' from postID and convert to int
-        # TODO Objective 10: parse post id from postIDReq
-        postID = 0
+        # Objective 10: parse post id from postIDReq
+        postID = int(postIDReq[5:])
 
         if request.user.is_authenticated:
-            # TODO Objective 10: update Post model entry to add user to likes field
+            # Objective 10: update Post model entry to add user to likes field
+            user_info = models.UserInfo.objects.get(user=request.user)
+            posts = list(models.Post.objects.all().order_by('-timestamp'))
+
+            # Get the post with given post ID
+            post = posts[postID]
+
+            # Like the post if the current user hasn't liked it yet.
+            if (not post.likes.filter(user=user_info).exists()):
+                post.likes.add(user_info)
 
             # return status='success'
             return HttpResponse()

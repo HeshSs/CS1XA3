@@ -21,8 +21,8 @@ def messages_view(request):
     if request.user.is_authenticated:
         user_info = models.UserInfo.objects.get(user=request.user)
 
-        # TODO Objective 9: query for posts (HINT only return posts needed to be displayed)
-        posts = []
+        # Objective 9: query for posts (HINT only return posts needed to be displayed)
+        posts = list(models.Post.objects.all().order_by('timestamp'))
 
         # TODO Objective 10: check if user has like post, attach as a new attribute to each post
 
@@ -189,7 +189,6 @@ def post_submit_view(request):
         if request.user.is_authenticated:
 
             # Objective 8: Add a new entry to the Post model
-            print(postContent)
             # Post info
             user_info = models.UserInfo.objects.get(user=request.user)
             time = datetime.now()

@@ -17,7 +17,7 @@
 
       <!-- Objective 9: Display Posts using posts list -->
         {% load static %}
-        {% for post in posts %}
+        {% for post, value in posts.items %}
           <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
               <img src="{% static 'avatar.png'  %}" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
               <span class="w3-right w3-opacity">{{ post.timestamp }}</span>
@@ -25,8 +25,13 @@
                 {{ post.content }}
               <hr class="w3-clear">
               <!-- Objective 10: Add Post id and likes count -->
-                      <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom like-button" id="post-{{ forloop.counter0 }}">
-                          <i class="fa fa-thumbs-up"></i>  Like</button>
+              {% if value %}
+                  <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom" id="post-{{ forloop.counter0 }}" disabled>
+                      <i class="fa fa-thumbs-up"></i>  Like</button>
+              {% else %}
+                  <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom like-button" id="post-{{ forloop.counter0 }}">
+                      <i class="fa fa-thumbs-up"></i>  Like</button>
+              {% endif %}
               <span class="w3-button w3-theme-d1 w3-margin-bottom">{{ post.likes.all.count }} Likes</span>
           </div>
         {% endfor %}

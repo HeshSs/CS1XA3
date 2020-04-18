@@ -31,7 +31,7 @@ class Post(models.Model):
     owner = models.ForeignKey(UserInfo,
                               on_delete=models.CASCADE)
     content = models.CharField(max_length=280)
-    timestamp = models.DateTimeField(auto_now=True, editable=False)
+    timestamp = models.DateTimeField(auto_now=True)
     likes = models.ManyToManyField(UserInfo,
                                    related_name='likes')
 

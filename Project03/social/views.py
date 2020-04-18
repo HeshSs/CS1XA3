@@ -29,7 +29,17 @@ def messages_view(request):
 
         posts = posts[:show_post]
 
-        # TODO Objective 10: check if user has liked post, attach as a new attribute to each post
+        # Objective 10: check if user has liked post, attach as a new attribute to each post
+
+        liked_posts = dict()
+        for post in posts:
+            if (post.likes.filter(user=user_info).exists()):
+                liked_posts[post] = True
+            else:
+                liked_posts[post] = False
+            #print(liked_posts.get(post))
+        
+        posts = liked_posts
 
         context = {'user_info': user_info, 'posts': posts}
         return render(request, 'messages.djhtml', context)

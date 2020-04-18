@@ -267,7 +267,9 @@ def friend_request_view(request):
 
             friend_request = models.FriendRequest(
                 from_user=from_user_info, to_user=to_user_info)
-            friend_request.save()
+
+            if (not models.FriendRequest.objects.filter(from_user=from_user_info, to_user=to_user_info).exists()):
+                friend_request.save()
 
             # return status='success'
             return HttpResponse()

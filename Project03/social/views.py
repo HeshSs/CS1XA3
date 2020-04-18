@@ -111,6 +111,8 @@ def people_view(request):
         # number of people to show
         request.session['show'] = request.session.get('show', 1)
         show = int(request.session.get('show', 1))
+
+        # People that the current user is not friends with
         all_people = []
         users = models.UserInfo.objects.all()
         for user in users:
@@ -122,7 +124,7 @@ def people_view(request):
         # Objective 5: create a list of all friend requests to current user
         all_requests = models.FriendRequest.objects.all()
         friend_requests = []
-        
+
         for friend_request in all_requests:
             if friend_request.to_user == user_info:
                 friend_requests.append(friend_request)
@@ -263,7 +265,8 @@ def friend_request_view(request):
             user = models.User.objects.get(username=username)
             to_user_info = models.UserInfo.objects.get(user=user)
 
-            friend_request = models.FriendRequest(from_user=from_user_info, to_user=to_user_info)
+            friend_request = models.FriendRequest(
+                from_user=from_user_info, to_user=to_user_info)
             friend_request.save()
 
             # return status='success'
@@ -290,17 +293,35 @@ def accept_decline_view(request):
                              then returns an empty HttpResponse, 404 if POST data doesn't contain decision
     '''
     data = request.POST.get('decision')
+    print(data)
     if data is not None:
-        # TODO Objective 6: parse decision from data
+        # Objective 6: parse decision from data
         decision = data[0]
         username = data[2:]
 
-
         if request.user.is_authenticated:
+            # Objective 6: delete FriendRequest entry and update friends in both Users
+            from_user_info = models.UserInfo.objects.get(user=request.user)
+            user = models.User.objects.get(username=username)
+            to_user_info = models.UserInfo.objects.get(user=user)
+            friend_requests = models.FriendRequest.objects.all()
+            # print("from" + from_user_info.user.username)
+            # print("to" + to_user_info.user.username)
 
-            # TODO Objective 6: delete FriendRequest entry and update friends in both Users
+            # Delete the friend request
+            for friend_request in friend_requests:
+                print(friend_request.to_user.user.username == to_user_info.user.username)
+                print(friend_request.from_user.user.username == from_user_info.user.username)
+                if (friend_request.to_user.user.username == to_user_info.user.username
+                        and friend_request.from_user.user.username == from_user_info.user.username):
+                    friend_request.delete()
 
-            # return status='success'
+            # Add the users as friends
+            if decision == 'A':
+                from_user_info.friends.add(to_user_info)
+                to_user_info.friends.add(from_user_info)
+
+                # return status='success'
             return HttpResponse()
         else:
             return redirect('login:login_view')

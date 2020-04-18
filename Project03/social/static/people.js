@@ -64,7 +64,7 @@ function adResponse(data, status) {
         location.reload();
     }
     else {
-        alert('failed to create friend request ' + status);
+        alert('failed to accept/decline friend request ' + status);
     }
 }
 
@@ -74,12 +74,12 @@ function acceptDeclineRequest(event) {
     let json_data = { 'decision': decision };
     // globally defined in messages.djhtml using i{% url 'social:like_view' %}
     let url_path = accept_decline_url;
+    //alert(decision);
 
     // AJAX post
     $.post(url_path,
         json_data,
         adResponse);
-    //alert(decision);
 }
 
 /* ********************************************************************************************

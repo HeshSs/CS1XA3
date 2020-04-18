@@ -3,7 +3,6 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, PasswordChangeForm
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib import messages
-from datetime import datetime
 
 from . import models
 
@@ -22,7 +21,7 @@ def messages_view(request):
         user_info = models.UserInfo.objects.get(user=request.user)
 
         # Objective 9: query for posts (HINT only return posts needed to be displayed)
-        posts = list(models.Post.objects.all().order_by('timestamp'))
+        posts = list(models.Post.objects.all().order_by('-timestamp'))
 
         # TODO Objective 10: check if user has like post, attach as a new attribute to each post
 
@@ -191,8 +190,7 @@ def post_submit_view(request):
             # Objective 8: Add a new entry to the Post model
             # Post info
             user_info = models.UserInfo.objects.get(user=request.user)
-            time = datetime.now()
-            post = models.Post(owner=user_info, content=postContent, timestamp=time)
+            post = models.Post(owner=user_info, content=postContent)
 
             # Save post
             post.save()

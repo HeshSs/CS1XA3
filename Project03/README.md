@@ -57,15 +57,14 @@ Exceptions:
 Description:
 - This feature is displayed in the left_column of messages.djhtml, people.djhtml and account.djhtml and contains user's info (e.g. birthday, interests, etc.)
 
-## Objective 03: Account Setting Page
+## Objective 03: Account Settings Page
 
 Description:
-
-* TODO
-
+- You can reach the Account Settings page by clicking on the top right icon
+- This feature is displayed in account.djhtml and is rendered by account_view.
+- Handles POST Requests for changing the User Info and/or password.
 Exceptions:
-
-* TODO
+- Either of the forms can't be half empty, otherwise the form returns an error message
 
 ## Objective 04: Displaying People List
 

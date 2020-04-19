@@ -10,9 +10,13 @@ List of current environments
 
     conda info --envs
 
-Activate environment
+Activate environment (required)
 
     conda activate djangoenv
+
+Collect static files (required)
+
+    python manage.py collectstatic
 
 Run locally with
 

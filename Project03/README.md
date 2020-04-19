@@ -58,5 +58,96 @@ Description:
 
 * TODO
 
-... 
+Exceptions:
 
+* TODO
+
+## Objective 03
+
+Description:
+
+* TODO
+
+Exceptions:
+
+* TODO
+
+## Objective 04
+
+Description:
+
+* TODO
+
+Exceptions:
+
+* TODO
+
+## Objective 05
+
+Description:
+
+* TODO
+
+Exceptions:
+
+* TODO
+
+## Objective 06
+
+Description:
+
+* TODO
+
+Exceptions:
+
+* TODO
+
+## Objective 07
+
+Description:
+
+* TODO
+
+Exceptions:
+
+* TODO
+
+## Objective 08
+
+Description:
+
+* TODO
+
+Exceptions:
+
+* TODO
+
+## Objective 09
+
+Description:
+
+* TODO
+
+Exceptions:
+
+* TODO
+
+## Objective 10
+
+Description:
+
+* TODO
+
+Exceptions:
+
+* TODO
+
+## Objective 11
+
+Description:
+
+* TODO
+
+Exceptions:
+
+* TODO

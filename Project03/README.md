@@ -49,6 +49,7 @@ Description:
 - This feature is displayed in signup.djhtml which is rendered by
 signup_view.
 - It makes a POST Request when the user tries to create a new user ands sends it to /e/salehh6/signup/ and signup_view handles it and creates a new UserInfo in the database.
+
 Exceptions:
 - If the form at /e/salehh6/signup/ is half empty and the user tries to submit it, it redirects the user back to signup.djhtml with a error message.
 
@@ -63,6 +64,7 @@ Description:
 - You can reach the Account Settings page by clicking on the top right icon.
 - This feature is displayed in account.djhtml and is rendered by account_view.
 - Handles POST Requests for changing the User Info and/or password.
+
 Exceptions:
 - Either of the forms can't be half empty, otherwise the form returns an error message.
 
@@ -77,22 +79,16 @@ Description:
 ## Objective 05: Sending Friend Requests
 
 Description:
-
-* TODO
-
-Exceptions:
-
-* TODO
+- This feature is displayed in the right column of people.djhtml and rendered by friend_request_view and shows the list of friend requests that the user has received.
+- It handles POST request by the user and adds a new FriendRequest to the database.
 
 ## Objective 06: Accepting / Declining Friend Requests
 
 Description:
-
-* TODO
+- 
 
 Exceptions:
-
-* TODO
+- 
 
 ## Objective 07: Displaying Friends List
 

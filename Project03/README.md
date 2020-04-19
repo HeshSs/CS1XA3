@@ -126,11 +126,12 @@ Description:
 
 Description:
 
-* TODO
+* When the like button below a post is clicked the number of likes that the post has recieved increases by 1.
+* Every person can like a post once
 
 Exceptions:
 
-* TODO
+* When a post is liked by someone, the Like button's colour is changed to grey and it won't respond to being clicked anymore
 
 ## Objective 11: Create a Test Database
 

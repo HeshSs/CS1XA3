@@ -85,10 +85,9 @@ Description:
 ## Objective 06: Accepting / Declining Friend Requests
 
 Description:
-- 
-
-Exceptions:
-- 
+- This feature is implemented on the Accept/Decline buttons for a friend request that was displayed in Objective 5
+- When one of the buttons is clicked, a POST request is sent from people.js to  accept_decline_view with id of the username of that person
+- When the request is accepted, both users are added as friends, otherwise the friend request is deleted.
 
 ## Objective 07: Displaying Friends List
 

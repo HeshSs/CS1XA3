@@ -55,12 +55,7 @@ Exceptions:
 ## Objective 02
 
 Description:
-
-* TODO
-
-Exceptions:
-
-* TODO
+- This feature is displayed in the left_column of messages.djhtml, people.djhtml and account.djhtml and contains user's info (e.g. birthday, interests, etc.)
 
 ## Objective 03
 

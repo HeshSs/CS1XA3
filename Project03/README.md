@@ -60,21 +60,19 @@ Description:
 ## Objective 03: Account Settings Page
 
 Description:
-- You can reach the Account Settings page by clicking on the top right icon
+- You can reach the Account Settings page by clicking on the top right icon.
 - This feature is displayed in account.djhtml and is rendered by account_view.
 - Handles POST Requests for changing the User Info and/or password.
 Exceptions:
-- Either of the forms can't be half empty, otherwise the form returns an error message
+- Either of the forms can't be half empty, otherwise the form returns an error message.
 
 ## Objective 04: Displaying People List
 
 Description:
-
-* TODO
-
-Exceptions:
-
-* TODO
+- You can reach the People Page by clicking on the people icon on the top left corner.
+- This feature is displayed in middle column of people.djhtml and rendered by people_view and shows the list of the people that the user is not friends with.
+- When the page is loaded for the first time only one person is shown (if the person is not friends with that person)
+- It handles AJAX POST from the static file people.js and shows more people when the More button is clicked.
 
 ## Objective 05: Sending Friend Requests
 

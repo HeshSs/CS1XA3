@@ -43,7 +43,7 @@ Kill server
 
     killall python
 
-## Objective 01
+## Objective 01: Login and SingUp Pages
 
 Description:
 - This feature is displayed in signup.djhtml which is rendered by
@@ -52,12 +52,12 @@ signup_view.
 Exceptions:
 - If the form at /e/salehh6/signup/ is half empty and the user tries to submit it, it redirects the user back to signup.djhtml with a error message.
 
-## Objective 02
+## Objective 02: User Profile and Interests
 
 Description:
 - This feature is displayed in the left_column of messages.djhtml, people.djhtml and account.djhtml and contains user's info (e.g. birthday, interests, etc.)
 
-## Objective 03
+## Objective 03: Account Setting Page
 
 Description:
 
@@ -67,7 +67,7 @@ Exceptions:
 
 * TODO
 
-## Objective 04
+## Objective 04: Displaying People List
 
 Description:
 
@@ -77,7 +77,7 @@ Exceptions:
 
 * TODO
 
-## Objective 05
+## Objective 05: Sending Friend Requests
 
 Description:
 
@@ -87,7 +87,7 @@ Exceptions:
 
 * TODO
 
-## Objective 06
+## Objective 06: Accepting / Declining Friend Requests
 
 Description:
 
@@ -97,7 +97,7 @@ Exceptions:
 
 * TODO
 
-## Objective 07
+## Objective 07: Displaying Friends List
 
 Description:
 
@@ -107,7 +107,7 @@ Exceptions:
 
 * TODO
 
-## Objective 08
+## Objective 08: Submitting Posts
 
 Description:
 
@@ -117,7 +117,7 @@ Exceptions:
 
 * TODO
 
-## Objective 09
+## Objective 09: Displaying Post List
 
 Description:
 
@@ -127,7 +127,7 @@ Exceptions:
 
 * TODO
 
-## Objective 10
+## Objective 10: Liking Posts and Displaying Like Count
 
 Description:
 
@@ -137,7 +137,7 @@ Exceptions:
 
 * TODO
 
-## Objective 11
+## Objective 11: Create a Test Database
 
 Description:
 

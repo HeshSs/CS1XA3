@@ -92,12 +92,8 @@ Description:
 ## Objective 07: Displaying Friends List
 
 Description:
-
-* TODO
-
-Exceptions:
-
-* TODO
+- You can reach the List of Friends by clicking on the message icon on the top left corner.
+- This feature is displayed in right column of messages.djhtml and rendered by messages_view and shows the list of the people that the user is friends with.
 
 ## Objective 08: Submitting Posts
 

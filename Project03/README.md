@@ -138,4 +138,4 @@ Exceptions:
 Description:
 
 * 4 users are created to test my server and database. The user `hishmat` is friends with all the other users and the user `MyTest` is only friends with hishmat. So I recommend you login as one of them and see how the server responds to everything.
-
+* A bunch of posts are posted in the server as well

@@ -46,8 +46,7 @@ class FriendRequest(models.Model):
 
 
 class ModifyInfoForm(forms.Form):
-    note = "Multiple interests are separated by ','"
     employment = forms.CharField(max_length=30)
     location = forms.CharField(max_length=30)
-    birthday = forms.DateField()
-    interests = forms.CharField(max_length=100)
+    birthday = forms.DateField(help_text='Birthday must be in mm/dd/yyyy format')
+    interests = forms.CharField(max_length=100, help_text="Multiple interests are separated by ','")

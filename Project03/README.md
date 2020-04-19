@@ -13,6 +13,7 @@ Activate environment
 
 Run locally with
 `python manage.py runserver localhost:8000` 
+
 Run on mac1xa3.ca with
 `python manage.py runserver localhost:10086` 
 
@@ -46,4 +47,5 @@ Description:
 
 * TODO
 
-...
+... 
+

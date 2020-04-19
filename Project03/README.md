@@ -110,22 +110,17 @@ Description:
 
 Description:
 
-* This feature is displayed in the middle column of Messages Page
-* When the post button is clicked an AJAX POST is sent from messages.js to post_submit_view and a new Post is added to the database
-* Page is reloaded when post is submitted successfully
-
-Exceptions:
-- 
+* This feature is displayed in the middle column of Messages Page.
+* When the post button is clicked an AJAX POST is sent from messages.js to post_submit_view and a new Post is added to the database.
+* Page is reloaded when post is submitted successfully.
 
 ## Objective 09: Displaying Post List
 
 Description:
 
-* TODO
-
-Exceptions:
-
-* TODO
+* This feature is displays a list of posts from newest ot oldest in the middle column of the messages.djhtml and is handled by messages.view
+* When the page is loaded for the first time only one post is shown
+* But by pressing the More button, it sends an AJAX POST from the static file messages.js to more_post_view and shows more posts.
 
 ## Objective 10: Liking Posts and Displaying Like Count
 

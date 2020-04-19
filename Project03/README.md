@@ -1,24 +1,30 @@
-# CS 1XA3 Project03 - <Salehh6>
+# CS 1XA3 Project03 - Salehh6
 
 ## Usage
 
 Install pre-existing conda environment with
-`conda env create -f environment.yml` 
+
+    conda env create -f environment.yml
 
 List of current environments
-`conda info --envs` 
+
+    conda info --envs
 
 Activate environment
-`conda activate djangoenv` 
+
+    conda activate djangoenv
 
 Run locally with
-`python manage.py runserver localhost:8000` 
+
+    python manage.py runserver localhost:8000
 
 Run on mac1xa3.ca with
-`python manage.py runserver localhost:10086` 
+
+    python manage.py runserver localhost:10086
 
 Run on mac1xa3.ca on the background with
-`python manage.py runserver localhost:10086 &` 
+
+    python manage.py runserver localhost:10086 &
 
 Log in with:
 | User    | Password   |
@@ -29,17 +35,22 @@ Log in with:
 | MyBoy   | funny321   |
 
 Make migrations
-`python manage.py makemigrations` 
-`python manage.py migrate` 
+
+    python manage.py makemigrations
+    python manage.py migrate
 
 Kill server
-`killall python` 
+
+    killall python
 
 ## Objective 01
 
 Description:
-
-* TODO
+- This feature is displayed in signup.djhtml which is rendered by
+signup_view.
+- It makes a POST Request when the user tries to create a new user ands sends it to /e/salehh6/signup/ and signup_view handles it and creates a new UserInfo in the database.
+Exceptions:
+- If the form at /e/salehh6/signup/ is half empty and the user tries to submit it, it redirects the user back to signup.djhtml with a error message.
 
 ## Objective 02
 
